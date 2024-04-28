@@ -1,0 +1,19 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// PrismaというORM (Object-Relational Mapping) ツールを使用したプロジェクトのスキーマファイルの一部です。
+
+// PrismaのクライアントライブラリがJavaScript用であることを指定しています。
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"  // データベースの種類としてPostgreSQLを使用
+  url      = env("POSTGRES_PRISMA_URL")  // データベースへの接続情報が環境変数 POSTGRES_PRISMA_URL に保存されている
+  directUrl = env("POSTGRES_URL_NON_POOLING")  // 特定の設定やテスト用のデータベース接続情報も環境変数から読み込まれることを示しています。ここで指定されている NON_POOLING は、コネクションプーリングを使用しない接続を意味します。
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")  // 本番データベースに影響を与えることなく、マイグレーションを実行できます。
+}
