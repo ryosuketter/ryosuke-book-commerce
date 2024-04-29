@@ -3,7 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+import {useSession} from "next-auth/react";
+
 const Header = () => {
+  const {data: session} = useSession();
+  const user = session?.user;
+  console.log("user", user);
   return (
     <header className="bg-slate-600 text-gray-100 shadow-lg">
       <nav className="flex items-center justify-between p-4">
@@ -25,7 +30,12 @@ const Header = () => {
           </Link>
 
           <Link href={`/profile`}>
-            <Image width={50} height={50} alt="profile_icon" src={"/default_icon.png"} />
+            <Image
+              width={50}
+              height={50}
+              alt="profile_icon"
+              src={user?.image || "/default_icon.png"}
+            />
           </Link>
         </div>
       </nav>
