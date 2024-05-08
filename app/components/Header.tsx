@@ -8,7 +8,6 @@ import {signOut, useSession} from "next-auth/react";
 const Header = () => {
   const {data: session} = useSession();
   const user = session?.user;
-  console.log("user", user);
   return (
     <header className="bg-slate-600 text-gray-100 shadow-lg">
       <nav className="flex items-center justify-between p-4">

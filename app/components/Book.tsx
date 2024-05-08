@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import {BookType} from "@/app/types/types";
 import {useState} from "react";
 import {useSession} from "next-auth/react";
@@ -15,7 +14,7 @@ type BookProps = {
 const Book = ({book}: BookProps) => {
   const [showModal, setShowModal] = useState(false);
   const {data: session} = useSession();
-  const user = session?.user;
+  const user: any = session?.user;
   const router = useRouter();
 
   const startCheckout = async () => {
@@ -29,6 +28,7 @@ const Book = ({book}: BookProps) => {
           title: book.title,
           price: book.price,
           bookId: book.id,
+          userId: user.id,
         }),
       });
       const responseData = await res.json();
